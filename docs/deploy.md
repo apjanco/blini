@@ -1,7 +1,7 @@
 How to deploy blini with Docker
 
 
-1. Clone this template `git clone https://github.com/apjanco/blini.git`
+1. Click on the "Use this Template" button an create a new respostory based on blini. From your repostory get the clone link and then `git clone https://github.com/<you>/your_blini.git`
 2. Update `url: "blini.apjan.co"` in `/app/site/site.yaml` this should name the domain you'll deploy the app to.
 3. Run `docker build -t blini .` from the directory containing Dockerfile.
 4. create a directory to contain ssl certs ```cd && mkdir certs``` ([src](https://cloud.google.com/community/tutorials/nginx-reverse-proxy-docker))
