@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Essay</title>
+
+
+{% endblock %}
+
+{% block content %}
+<section class="portfolio-block hire-me">
+    <div class="container">   
+        <div id="title"></div>
+        <div id="author"></div>
+        <div id="text"></div>
+    </div>
+</section>
+{% endblock %}
+
+{% block js%}
+<script>
+    document.querySelectorAll( 'oembed[url]' ).forEach( element => {
+        // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
+        // to discover the media.
+        const anchor = document.createElement( 'a' );
+
+        anchor.setAttribute( 'href', element.getAttribute( 'url' ) );
+        anchor.className = 'embedly-card';
+
+        element.appendChild( anchor );
+    } );
+</script>
+{% endblock %}

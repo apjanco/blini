@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="../assets/img/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="../assets/img/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet"/>
+<link href="../assets/fonts/ionicons.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css" rel="stylesheet"/>
+<link href="../assets/css/style.css" rel="stylesheet"/>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="../assets/css/ckeditor.css" rel="stylesheet"/> <!-- Remove this?  https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/content-styles.html -->
+<title>Essay</title>
+<link href="../assets/css/shuffle.css" rel="stylesheet"/>
+<meta content="Emojis" name="title"/><meta content="emojis" name="slug"/><meta content="by Andy" name="author"/><meta content="assets/img/nature/image5.jpg" name="card_image"/><meta content="May 08, 2020" name="date"/><meta content="" name="items"/></head>
+<body>
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
+<div class="container"><a class="navbar-brand logo" href="/">World History at Global Scale</a><button class="navbar-toggler" data-target="#navbarNav" data-toggle="collapse"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="nav navbar-nav ml-auto">
+<li class="nav-item" role="presentation"><a class="nav-link" href="/about">HIST101</a></li>
+</ul>
+</div>
+</div>
+</nav>
+<main class="page landing-page">
+<section class="portfolio-block hire-me">
+<div class="container">
+<div id="title"><h4>Emojis</h4></div>
+<div id="author"><p>by Andy</p></div>
+<div id="text"><p>This exhibit is none of your business. </p></div>
+<div id="items"></div>
+</div>
+</section>
+<div class="container">
+<div class="row">
+<div class="col-12@sm">
+<h1>Shuffle homepage demo</h1>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-4@sm col-3@md">
+<div class="filters-group">
+<label class="filter-label" for="filters-search-input">Search</label>
+<input class="textfield filter__search js-shuffle-search" id="filters-search-input" type="search"/>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-12@sm filters-group-wrap">
+<div class="filters-group">
+<p class="filter-label">Filter</p>
+<div class="btn-group filter-options">
+<button class="btn btn--primary" data-group="space">Space</button>
+<button class="btn btn--primary" data-group="nature">Nature</button>
+<button class="btn btn--primary" data-group="animal">Animal</button>
+<button class="btn btn--primary" data-group="city">City</button>
+</div>
+</div>
+<fieldset class="filters-group">
+<legend class="filter-label">Sort</legend>
+<div class="btn-group sort-options">
+<label class="btn active">
+<input checked="" name="sort-value" type="radio" value="dom"/> Default
+            </label>
+<label class="btn">
+<input name="sort-value" type="radio" value="title"/> Title
+            </label>
+<label class="btn">
+<input name="sort-value" type="radio" value="date-created"/> Date Created
+            </label>
+</div>
+</fieldset>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row my-shuffle-container" id="grid">
+<figure class="col-5@xs col-5@sm col-5@md picture-item shuffle-item shuffle-item--visible" data-date-created="2020-05-08" data-groups='["Nature"]' data-title="Does this work?" style="position: absolute; top: 0px; left: 0px; visibility: visible; will-change: transform; opacity: 1; transform: translate(0px, 0px) scale(0.001); transition-duration: 250ms; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-property: transform, opacity;">
+<div class="picture-item__inner">
+<div class="aspect aspect--16x9">
+<div class="aspect__inner">
+<img alt="A deep blue lake sits in the middle of vast hills covered with evergreen trees" id="_zhbtk8t0b" onclick="change_image(this);" src="assets/upload/EXQDS39WAAAYI_C.jpeg"/>
+</div>
+</div>
+<div class="picture-item__details">
+<p id="figure_title" onclick="change_image(this)">Does this work?</p>
+</div>
+<div class="picture-item__details">
+<figcaption class="picture-item__title">
+<div aria-label="Rich Text Editor, main" class="ck-blurred ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline" contenteditable="true" dir="ltr" id="figure_text" lang="en" role="textbox"><p>hi there</p></div>
+<button "="" class="btn btn-light float-left" onclick="delete_item(this);" type="button">
+<svg class="bi bi-trash" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z"></path>
+<path clip-rule="evenodd" d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0 01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 01-1-1V2a1 1 0 011-1H6a1 1 0 011-1h2a1 1 0 011 1h3.5a1 1 0 011 1v1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" fill-rule="evenodd"></path>
+</svg>
+</button>
+</figcaption>
+</div>
+</div>
+</figure>
+<figure class="col-5@xs col-5@sm col-5@md picture-item shuffle-item shuffle-item--visible" data-date-created="2020-05-08" data-groups='["Orange"]' data-title="Panic Orange" style="position: absolute; top: 0px; left: 0px; visibility: visible; will-change: transform; opacity: 1; transform: translate(347px, 0px) scale(1); transition-duration: 250ms; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-property: transform, opacity;">
+<div class="picture-item__inner">
+<div class="aspect aspect--16x9">
+<div class="aspect__inner">
+<img alt="A deep blue lake sits in the middle of vast hills covered with evergreen trees" id="_of6jiwogv" onclick="change_image(this);" src="assets/upload/EWTHHTLWoAAX4od.jpeg"/>
+</div>
+</div>
+<div class="picture-item__details">
+<p id="figure_title" onclick="change_image(this)">Panic Orange</p>
+</div>
+<div class="picture-item__details">
+<figcaption class="picture-item__title">
+<div aria-label="Rich Text Editor, main" class="ck-blurred ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline" contenteditable="true" dir="ltr" id="figure_text" lang="en" role="textbox"><p>hi there</p></div>
+<button "="" class="btn btn-light float-left" onclick="delete_item(this);" type="button">
+<svg class="bi bi-trash" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z"></path>
+<path clip-rule="evenodd" d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0 01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 01-1-1V2a1 1 0 011-1H6a1 1 0 011-1h2a1 1 0 011 1h3.5a1 1 0 011 1v1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" fill-rule="evenodd"></path>
+</svg>
+</button>
+</figcaption>
+</div>
+</div>
+</figure>
+<!-- END ITEMS -->
+<figure class="col-5@xs col-5@sm col-5@md picture-item shuffle-item shuffle-item--visible" data-date-created="2020-05-08" data-groups='["Nature"]' data-title="Poop with Googles" style="position: absolute; top: 0px; left: 0px; visibility: visible; will-change: transform; opacity: 1; transform: translate(0px, 404px) scale(1); transition-duration: 250ms; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-property: transform, opacity;">
+<div class="picture-item__inner">
+<div class="aspect aspect--16x9">
+<div class="aspect__inner">
+<img alt="A deep blue lake sits in the middle of vast hills covered with evergreen trees" id="_sog6ix2x5" onclick="change_image(this);" src="assets/upload/EWWwkxoX0AIRS_e.jpeg"/>
+</div>
+</div>
+<div class="picture-item__details">
+<p id="figure_title" onclick="change_image(this)">Poop with Googles</p>
+</div>
+<div class="picture-item__details">
+<figcaption class="picture-item__title">
+<div aria-label="Rich Text Editor, main" class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-focused" contenteditable="true" dir="ltr" id="figure_text" lang="en" role="textbox"><p>This  one was just out on the slopes.</p></div>
+<button "="" class="btn btn-light float-left" onclick="delete_item(this);" type="button">
+<svg class="bi bi-trash" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z"></path>
+<path clip-rule="evenodd" d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0 01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 01-1-1V2a1 1 0 011-1H6a1 1 0 011-1h2a1 1 0 011 1h3.5a1 1 0 011 1v1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" fill-rule="evenodd"></path>
+</svg>
+</button>
+</figcaption>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</main>
+<footer class="page-footer gradient">
+<div class="container">
+<div class="links"><a href="https://github.com/apjanco/blini">🧿 blini</a></div>
+</div>
+</footer>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+<script src="../assets/js/theme.js"></script>
+<script async="" charset="utf-8" src="https://cdn.embedly.com/widgets/platform.js"></script>
+<script src="../assets/js/shuffle.min.js"></script>
+<script src="../assets/js/popper.min.js"></script>
+<script>
+        $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+<script>
+    document.querySelectorAll( 'oembed[url]' ).forEach( element => {
+        // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
+        // to discover the media.
+        const anchor = document.createElement( 'a' );
+
+        anchor.setAttribute( 'href', element.getAttribute( 'url' ) );
+        anchor.className = 'embedly-card';
+
+        element.appendChild( anchor );
+    } );
+</script>
+<script>
+var Shuffle = window.Shuffle;
+
+class Demo {
+  constructor(element) {
+    this.element = element;
+    this.shuffle = new Shuffle(element, {
+      itemSelector: '.picture-item',
+      sizer: element.querySelector('.my-sizer-element'),
+    });
+
+    // Log events.
+    this.addShuffleEventListeners();
+    this._activeFilters = [];
+    this.addFilterButtons();
+    this.addSorting();
+    this.addSearchFilter();
+  }
+
+  /**
+   * Shuffle uses the CustomEvent constructor to dispatch events. You can listen
+   * for them like you normally would (with jQuery for example).
+   */
+  addShuffleEventListeners() {
+    this.shuffle.on(Shuffle.EventType.LAYOUT, (data) => {
+      console.log('layout. data:', data);
+    });
+    this.shuffle.on(Shuffle.EventType.REMOVED, (data) => {
+      console.log('removed. data:', data);
+    });
+  }
+
+  addFilterButtons() {
+    const options = document.querySelector('.filter-options');
+    if (!options) {
+      return;
+    }
+    
+    const filterButtons = Array.from(options.children);
+    const onClick = this._handleFilterClick.bind(this);
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', onClick, false);
+    });
+  }
+
+  _handleFilterClick(evt) {
+    const btn = evt.currentTarget;
+    const isActive = btn.classList.contains('active');
+    const btnGroup = btn.getAttribute('data-group');
+    
+    this._removeActiveClassFromChildren(btn.parentNode);
+    
+    let filterGroup;
+    if (isActive) {
+      btn.classList.remove('active');
+      filterGroup = Shuffle.ALL_ITEMS;
+    } else {
+      btn.classList.add('active');
+      filterGroup = btnGroup;
+    }
+    
+    this.shuffle.filter(filterGroup);
+  }
+
+  _removeActiveClassFromChildren(parent) {
+    const { children } = parent;
+    for (let i = children.length - 1; i >= 0; i--) {
+      children[i].classList.remove('active');
+    }
+  }
+
+  addSorting() {
+    const buttonGroup = document.querySelector('.sort-options');
+    if (!buttonGroup) {
+      return;
+    }
+    buttonGroup.addEventListener('change', this._handleSortChange.bind(this));
+  }
+
+  _handleSortChange(evt) {
+    // Add and remove `active` class from buttons.
+    const buttons = Array.from(evt.currentTarget.children);
+    buttons.forEach((button) => {
+      if (button.querySelector('input').value === evt.target.value) {
+        button.classList.add('active');
+      } else {
+        button.classList.remove('active');
+      }
+    });
+    
+    // Create the sort options to give to Shuffle.
+    const { value } = evt.target;
+    let options = {};
+    
+    function sortByDate(element) {
+      return element.getAttribute('data-created');
+    }
+    
+    function sortByTitle(element) {
+      return element.getAttribute('data-title').toLowerCase();
+    }
+    
+    if (value === 'date-created') {
+      options = {
+        reverse: true,
+        by: sortByDate,
+      };
+    } else if (value === 'title') {
+      options = {
+        by: sortByTitle,
+      };
+    }
+    this.shuffle.sort(options);
+  }
+
+  // Advanced filtering
+  addSearchFilter() {
+    const searchInput = document.querySelector('.js-shuffle-search');
+    if (!searchInput) {
+      return;
+    }
+    searchInput.addEventListener('keyup', this._handleSearchKeyup.bind(this));
+  }
+
+  /**
+   * Filter the shuffle instance by items with a title that matches the search input.
+   * @param {Event} evt Event object.
+   */
+  _handleSearchKeyup(evt) {
+    const searchText = evt.target.value.toLowerCase();
+    this.shuffle.filter((element, shuffle) => {
+      // If there is a current filter applied, ignore elements that don't match it.
+      if (shuffle.group !== Shuffle.ALL_ITEMS) {
+        // Get the item's groups.
+        const groups = JSON.parse(element.getAttribute('data-groups'));
+        const isElementInCurrentGroup = groups.indexOf(shuffle.group) !== -1;
+        // Only search elements in the current group
+        if (!isElementInCurrentGroup) {
+          return false;
+        }
+      }
+      const titleElement = element.querySelector('.picture-item__title');
+      const titleText = titleElement.textContent.toLowerCase().trim();
+      return titleText.indexOf(searchText) !== -1;
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  window.demo = new Demo(document.getElementById('grid'));
+});
+</script>
+</body>
+</html>

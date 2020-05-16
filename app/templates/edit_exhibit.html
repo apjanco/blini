@@ -1,0 +1,643 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Essay</title>
+<meta name="title" content="The End of Time">
+<meta name="slug" content="the-end-of-time">
+<meta name="author" content="John Doe">
+<meta name="description" content="Free Web tutorials">
+<link rel="stylesheet" href="assets/css/shuffle.css"> 
+
+{% endblock %}
+
+
+{% block content %}
+<input type="hidden" name="dev" value="{{ meta.dev }}"">
+
+<div class="container"> 
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-light" type="button" onclick="window.location.href='/'">
+                <svg class="bi bi-arrow-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 010 .708L3.207 8l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M2.5 8a.5.5 0 01.5-.5h10.5a.5.5 0 010 1H3a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                  </svg>
+            </button>
+        </div>
+        <div class="col">
+            <button class="btn btn-light float-right"" type="button" onclick="window.location.href='/delete_exhibit/{{ the.slug }}'">
+                <svg class="bi bi-trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0 01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 01-1-1V2a1 1 0 011-1H6a1 1 0 011-1h2a1 1 0 011 1h3.5a1 1 0 011 1v1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" clip-rule="evenodd"/>
+                  </svg>
+            </button>
+        </div>
+      </div> 
+    
+    
+    </div>
+<section class="portfolio-block hire-me">
+    <div class="container">   
+        <div id="title" style="padding-left: 10px;" contenteditable="true"><h4>{{ the.title }}</h4></div>
+        <div id="author" style="padding-left: 10px;" contenteditable="true">{{ the.author }}</div>
+        <div name="text" id="text" contenteditable="true">{{ the.text|safe }}</div>
+
+        {% if meta.dev %}
+        <button class="btn btn-light" onclick="create_item()" data-toggle="tooltip" data-placement="top" title="Add new item">
+          <svg class="bi bi-file-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 1H4a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V8h-1v5a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1h5V1z"/>
+            <path fill-rule="evenodd" d="M13.5 1a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-2a.5.5 0 010-1H13V1.5a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M13 3.5a.5.5 0 01.5-.5h2a.5.5 0 010 1H14v1.5a.5.5 0 01-1 0v-2z" clip-rule="evenodd"/>
+          </svg>
+        </button>
+        {% endif %}
+        <div name="items" style="padding-left: 10px;" id="items">
+        
+        <!-- ITEMS -->          
+          
+            <div class="row">
+              <div class="col-4@sm col-3@md">
+                <div class="filters-group">
+                  <label for="filters-search-input" class="filter-label">Search</label>
+                  <input class="textfield filter__search js-shuffle-search" type="search" id="filters-search-input" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12@sm filters-group-wrap">
+                <div class="filters-group">
+                  <p class="filter-label">Filter</p>
+                  <div class="btn-group filter-options">
+                    {% for filter in the.filters %}
+                    <button class="btn btn--primary" data-group="{{ filter }}">{{ filter }}</button>
+                    {% endfor %}
+                  </div>
+                </div>
+                <fieldset class="filters-group">
+                  <legend class="filter-label">Sort</legend>
+                  <div class="btn-group sort-options">
+                    <label class="btn active">
+                      <input type="radio" name="sort-value" value="dom" checked /> Default
+                    </label>
+                    <label class="btn">
+                      <input type="radio" name="sort-value" value="title" /> Title
+                    </label>
+                    <label class="btn">
+                      <input type="radio" name="sort-value" value="date-created" /> Date Created
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+         
+
+          <div class="container">
+            <div id="grid" class="row my-shuffle-container">
+              {% for item in the.items_ %}
+              {{ item|safe}}
+              {% endfor %}
+              
+              
+          <!-- END ITEMS -->
+        
+        
+    </div>
+    
+</section>
+
+
+
+<!-- The Modal -->
+<div class="modal" id="item-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Item</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+       
+  
+          <div class="form-group">
+            <input id="item-image" type="file" accept="image/*" class="filestyle" data-btnClass="btn btn-light" data-dragdrop="true" data-input="false" data-classIcon="icon-plus" data-text="Change image">
+            <label for="item-title">Item Title</label>
+            <input name="item-title " class="form-control" type="text" id="modal-title"></div>
+            <label for="filters">Filters</label>
+            <input name="filters " class="form-control" type="text" id="modal-filters"></div>
+            <input type="hidden" id="modal-figure-id" name="figure_id" value="">
+            <button onclick="submit_modal()" class="btn btn-clear float-right">Save</button>
+          </div>
+          
+
+       
+      </div>
+
+     
+    </div>
+  </div>
+</div>
+<!-- end edit item modal -->
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="assets/js/bootstrap-filestyle.min.js"> </script>
+
+<script src="assets/ckeditor5/build/ckeditor.js"></script>
+<script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
+<script>
+  function send_socket(){
+    const text = editor.getData();
+    const title = $("#title").text();
+    const author = $("#author").text();
+    const grid = $("#grid").html();
+    data = '💾🥞' + 'exhibit' + '💾🥞' + '{{ the.slug }}' + '💾🥞' + title + '💾🥞' + author + '💾🥞' +text + '💾🥞' + grid
+    ws.send(data)
+  };
+
+</script>
+
+<script>
+  function submit_modal() {
+    // take title and update data-title
+    // update data-filters from form
+    // ajax to send the file
+    
+    var fd = new FormData(); 
+    var files = $('#item-image')[0].files[0];
+    var request = new XMLHttpRequest();
+    if (typeof files !== "undefined") {
+      fd.append('file',files);   
+      fd.append('filename', files.name);
+      request.open("POST", "http://{{ meta.url }}/item_images");
+      request.send(fd);
+      let ur = request.response;
+      let url = ur.slice(2,-2);
+      // get image element with figure_id and set src to url
+      figure_id = $('#modal-figure-id').val();
+      $('#' + figure_id).attr('src', url);
+
+      send_socket();
+    }
+    request.onreadystatechange = function() {
+    if (request.readyState === 4) {
+      // on success, update img src
+      
+      let ur = request.response;
+      let url = ur.slice(2,-2);
+      // get image element with figure_id and set src to url
+      figure_id = $('#modal-figure-id').val();
+      $('#' + figure_id).attr('src', url);
+
+    item_title = $('#modal-title').val();
+    filters = $('#modal-filters').val();
+    figure_id = $('#modal-figure-id').val();
+    let item_img = $('#' + figure_id);
+    let parent = item_img.parents("figure");
+    //set item data-title 
+    title_element = parent.find('#figure_title');
+    parent.attr('data-title', item_title);
+
+    //set item title
+    title_element.text(item_title);
+    
+    //set item data-filters
+    parent.attr('data-groups', filters);
+    send_socket();
+      
+    }
+    else {
+    item_title = $('#modal-title').val();
+    filters = $('#modal-filters').val();
+    figure_id = $('#modal-figure-id').val();
+    let item_img = $('#' + figure_id);
+    let parent = item_img.parents("figure");
+    //set item data-title 
+    title_element = parent.find('#figure_title');
+    parent.attr('data-title', item_title);
+
+    //set item title
+    title_element.text(item_title);
+    
+    //set item data-filters
+    parent.attr('data-groups', filters);
+
+    // TODO add field and logic for img alt text
+
+    send_socket();
+    };
+    
+    };
+    
+    
+    send_socket();
+    $('#item-modal').modal('toggle');
+  };
+</script>
+
+<script>
+  function change_image(e){
+      // open the item modal
+      $('#item-modal').modal('toggle');
+
+      // get current title and filters
+      let figure_id = e.id;
+      let parent = e.closest("figure");  
+      let filters = parent.getAttribute("data-groups");
+      let title = $(parent).find('#figure_title').text();
+      let data_title = parent.getAttribute("data-title");
+      data_title = title;
+      
+      $('#modal-title').val(title);
+      $('#modal-filters').val(filters); 
+      $('#modal-figure-id').val(figure_id); // TODO make this look nice with select2
+      //$('#modal-element').val(e); How to pass the element to submit_modal()?
+
+  };
+
+function delete_item(e){
+  $(e).parents('figure').remove()
+  send_socket();
+};
+  function create_item(){
+
+    // create a string for today's date ex: 2017-04-30
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+
+  // generate a unique id for each item, this is needed by the modal to assign data to the correct item  
+  var ID = function () {
+  //https://gist.github.com/gordonbrander/2230317
+  return '_' + Math.random().toString(36).substr(2, 9);
+  };
+  
+    let html = `
+    <figure class="col-5@xs col-5@sm col-5@md picture-item" data-groups='["Nature"]' data-date-created="` + today + `" data-title="Lake Walchen">
+    <div class="picture-item__inner">
+      <div class="aspect aspect--16x9">
+        <div class="aspect__inner">
+          <img id="` + ID() + `" onclick="change_image(this);" src="https://images.unsplash.com/photo-1493585552824-131927c85da2?ixlib=rb-0.3.5&auto=format&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=284&h=160&fit=crop&s=6ef0f8984525fc4500d43ffa53fe8190"
+            alt="A deep blue lake sits in the middle of vast hills covered with evergreen trees" />
+           
+        </div>
+       
+      </div>
+      <div class="picture-item__details">
+  
+        <p onclick="change_image(this)" id="figure_title">title...</p>
+        </div>
+      <div class="picture-item__details">
+        <figcaption class="picture-item__title">
+          <div id="figure_text">hi there</div>
+          <button class="btn btn-light float-left"" type="button" onclick="delete_item(this);">
+                <svg class="bi bi-trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0 01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 01-1-1V2a1 1 0 011-1H6a1 1 0 011-1h2a1 1 0 011 1h3.5a1 1 0 011 1v1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" clip-rule="evenodd"/>
+                  </svg>
+            </button>
+        </figcaption>
+      </div>
+    </div>
+  </figure>
+`;
+  $( "#grid" ).append( html );
+  send_socket();
+  // reload the grid with the new item
+  //location.reload();
+  window.demo = new Demo(document.getElementById('grid'));
+  reload_text_editors()
+
+  };
+
+</script>
+<script>
+    let ws = new WebSocket("ws://{{ meta.url }}/ws");
+    let editor;
+
+
+    InlineEditor
+    .create( document.querySelector( '#text' ), {
+                
+				toolbar: {
+					items: [
+						'undo',
+						'redo',
+						'heading',
+						'|',
+						'fontFamily',
+						'fontSize',
+						'bold',
+						'italic',
+						'link',
+						'bulletedList',
+						'numberedList',
+						'blockQuote',
+						'|',
+						'horizontalLine',
+						'indent',
+						'outdent',
+                        '|',
+                        //'ckfinder',
+						'imageUpload',
+                        'insertTable',
+                        'mediaEmbed'
+					]
+				},
+				language: 'en',
+				image: {
+					toolbar: [
+                        'imageTextAlternative', 
+                        '|', 
+                        'imageStyle:alignLeft', 
+                        'imageStyle:full', 
+                        'imageStyle:alignRight'
+                    ],
+                    styles: [
+                        'full',
+                        'alignLeft',
+                        'alignRight'
+                    ],
+				},
+				table: {
+					contentToolbar: [
+						'tableColumn',
+						'tableRow',
+						'mergeTableCells'
+					]
+				},
+                licenseKey: '',
+                simpleUpload: {
+                   // The URL the images are uploaded to.
+                    uploadUrl: 'http://{{ meta.url }}/images',
+
+                    // Headers sent along with the XMLHttpRequest to the upload server.
+                },
+                // ckfinder: {
+                //     uploadUrl: 'http://localhost:8000/images',
+                // },
+				
+			} )
+        //.create( document.querySelector( '#text' ) )
+        .then( newEditor => {
+        editor = newEditor;
+        editor.model.document.on('change:data', (evt, data) => {
+        send_socket();
+    });
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+        
+
+// TODO add events to capture mouse highlight for bold, italic and so on in ckeditor
+document.querySelector( '#title' ).addEventListener( 'keyup', () => {
+  send_socket();
+} );
+document.querySelector( '#author' ).addEventListener( 'keyup', () => {
+  send_socket();
+} );
+
+document.querySelector( '#grid' ).addEventListener( 'keyup', () => {
+  send_socket();
+} );
+
+</script>
+
+<script>
+    var Shuffle = window.Shuffle;
+    
+    class Demo {
+      constructor(element) {
+        this.element = element;
+        this.shuffle = new Shuffle(element, {
+          itemSelector: '.picture-item',
+          sizer: element.querySelector('.my-sizer-element'),
+        });
+    
+        // Log events.
+        this.addShuffleEventListeners();
+        this._activeFilters = [];
+        this.addFilterButtons();
+        this.addSorting();
+        this.addSearchFilter();
+      }
+      
+      /**
+       * Shuffle uses the CustomEvent constructor to dispatch events. You can listen
+       * for them like you normally would (with jQuery for example).
+       */
+      addShuffleEventListeners() {
+        this.shuffle.on(Shuffle.EventType.LAYOUT, (data) => {
+          console.log('layout. data:', data);
+        });
+        this.shuffle.on(Shuffle.EventType.REMOVED, (data) => {
+          console.log('removed. data:', data);
+        });
+      }
+    
+      addFilterButtons() {
+        const options = document.querySelector('.filter-options');
+        if (!options) {
+          return;
+        }
+        
+        const filterButtons = Array.from(options.children);
+        const onClick = this._handleFilterClick.bind(this);
+        filterButtons.forEach((button) => {
+          button.addEventListener('click', onClick, false);
+        });
+      }
+    
+      _handleFilterClick(evt) {
+        const btn = evt.currentTarget;
+        const isActive = btn.classList.contains('active');
+        const btnGroup = btn.getAttribute('data-group');
+        
+        this._removeActiveClassFromChildren(btn.parentNode);
+        
+        let filterGroup;
+        if (isActive) {
+          btn.classList.remove('active');
+          filterGroup = Shuffle.ALL_ITEMS;
+        } else {
+          btn.classList.add('active');
+          filterGroup = btnGroup;
+        }
+        
+        this.shuffle.filter(filterGroup);
+      }
+    
+      _removeActiveClassFromChildren(parent) {
+        const { children } = parent;
+        for (let i = children.length - 1; i >= 0; i--) {
+          children[i].classList.remove('active');
+        }
+      }
+    
+      addSorting() {
+        const buttonGroup = document.querySelector('.sort-options');
+        if (!buttonGroup) {
+          return;
+        }
+        buttonGroup.addEventListener('change', this._handleSortChange.bind(this));
+      }
+    
+      _handleSortChange(evt) {
+        // Add and remove `active` class from buttons.
+        const buttons = Array.from(evt.currentTarget.children);
+        buttons.forEach((button) => {
+          if (button.querySelector('input').value === evt.target.value) {
+            button.classList.add('active');
+          } else {
+            button.classList.remove('active');
+          }
+        });
+        
+        // Create the sort options to give to Shuffle.
+        const { value } = evt.target;
+        let options = {};
+        
+        function sortByDate(element) {
+          return element.getAttribute('data-created');
+        }
+        
+        function sortByTitle(element) {
+          return element.getAttribute('data-title').toLowerCase();
+        }
+        
+        if (value === 'date-created') {
+          options = {
+            reverse: true,
+            by: sortByDate,
+          };
+        } else if (value === 'title') {
+          options = {
+            by: sortByTitle,
+          };
+        }
+        this.shuffle.sort(options);
+      }
+    
+      // Advanced filtering
+      addSearchFilter() {
+        const searchInput = document.querySelector('.js-shuffle-search');
+        if (!searchInput) {
+          return;
+        }
+        searchInput.addEventListener('keyup', this._handleSearchKeyup.bind(this));
+      }
+    
+      /**
+       * Filter the shuffle instance by items with a title that matches the search input.
+       * @param {Event} evt Event object.
+       */
+      _handleSearchKeyup(evt) {
+        const searchText = evt.target.value.toLowerCase();
+        this.shuffle.filter((element, shuffle) => {
+          // If there is a current filter applied, ignore elements that don't match it.
+          if (shuffle.group !== Shuffle.ALL_ITEMS) {
+            // Get the item's groups.
+            const groups = JSON.parse(element.getAttribute('data-groups'));
+            const isElementInCurrentGroup = groups.indexOf(shuffle.group) !== -1;
+            // Only search elements in the current group
+            if (!isElementInCurrentGroup) {
+              return false;
+            }
+          }
+          const titleElement = element.querySelector('.picture-item__title');
+          const titleText = titleElement.textContent.toLowerCase().trim();
+          return titleText.indexOf(searchText) !== -1;
+        });
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      window.demo = new Demo(document.getElementById('grid'));
+    });
+    
+    
+ 
+// or approach where are figures are just a block of editable html 
+// problems: sort by title, need to set title, 
+// filters, need to set filters
+function reload_text_editors() {
+var allEditors = document.querySelectorAll('#figure_text');
+for (var i = 0; i < allEditors.length; ++i) {
+  InlineEditor
+  .create( allEditors[i],  {
+                
+				toolbar: {
+					items: [
+						'undo',
+						'redo',
+						'heading',
+						'|',
+						'fontFamily',
+						'fontSize',
+						'bold',
+						'italic',
+						'link',
+						'bulletedList',
+						'numberedList',
+						'blockQuote',
+						'|',
+						'horizontalLine',
+						'indent',
+						'outdent',
+                        '|',
+                        //'ckfinder',
+						'imageUpload',
+                        'insertTable',
+                        'mediaEmbed'
+					]
+				},
+				language: 'en',
+				image: {
+					toolbar: [
+                        'imageTextAlternative', 
+                        '|', 
+                        'imageStyle:alignLeft', 
+                        'imageStyle:full', 
+                        'imageStyle:alignRight'
+                    ],
+                    styles: [
+                        'full',
+                        'alignLeft',
+                        'alignRight'
+                    ],
+				},
+				table: {
+					contentToolbar: [
+						'tableColumn',
+						'tableRow',
+						'mergeTableCells'
+					]
+				},
+                licenseKey: '',
+                simpleUpload: {
+                   // The URL the images are uploaded to.
+                    uploadUrl: 'http://{{ meta.url }}/images',
+
+                    // Headers sent along with the XMLHttpRequest to the upload server.
+                },
+                // ckfinder: {
+                //     uploadUrl: 'http://localhost:8000/images',
+                // },
+				
+			} )
+       
+        .catch( error => {
+            console.error( error );
+        } );
+      };
+};
+reload_text_editors()
+    </script>
+{% endblock%}

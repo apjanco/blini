@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>About</title>
+{% endblock %}
+{% block content %}
+
+<section class="portfolio-block hire-me">
+  <div class="container text-center">
+      <div class="heading ">
+          <h2>About</h2>
+      </div>
+      {% for key, value in meta.items() %}
+      
+      {% if key == "description" %}
+      <p>{{ value|safe }}</p>
+     
+     {% endif %}
+     {% endfor %}
+  </div>
+</section>
+{% endblock %}

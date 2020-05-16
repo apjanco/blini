@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% block head %}
+<title>Home</title>
+{% endblock %}
+
+{% block nav %}
+{% if meta.dev %}
+<button class="btn btn-primary" data-toggle="modal" data-target="#essay-modal">Add Essay</button>
+<button class="btn btn-primary" data-toggle="modal" data-target="#exhibit-modal">Add Exhibit</button>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% if meta.exhibits and not meta.essays %}
+<section class="portfolio-block cv">
+  <div class="container">
+      <div class="work-experience group">
+          <div class="heading">
+              <h2 class="text-center">Exhibits</h2>
+          </div>
+     
+        {% for exhibit in meta.exhibits %}
+            <div class="item">
+                <div class="row">
+                    <div class="col-md-6">
+                        {% if meta.dev%}
+                        <h3><a href="?edit_exhibit={{ exhibit.slug }}" style="color: black;">{{ exhibit.title }}</a></h3></form>
+                        {% else %}
+                        <h3><a href="/exhibit/{{ exhibit.slug }}" style="color: black;">{{ exhbit.title }}</a></h3>
+                        {% endif %}
+                        <h6>{{ exhibit.author }}</h6>
+                    </div>
+                    <div class="col-md-6"><span class="period">{{ exhibit.date }}</span></div>
+                </div>
+               
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+        
+</section>
+{% endif %}
+{% if meta.essays and not meta.exhibits %}
+<section class="portfolio-block cv">
+    <div class="container">
+        <div class="work-experience group">
+            <div class="heading">
+                <h2 class="text-center">Essays</h2>
+            </div>
+            
+            {% for essay in meta.essays %}
+            <div class="item">
+                <div class="row">
+                    <div class="col-md-6">
+                        {% if meta.dev%}
+                        <h3><a href="?edit_essay={{ essay.slug }}" style="color: black;">{{ essay.title }}</a></h3></form>
+                        {% else %}
+                        <h3><a href="/essay/{{ essay.slug }}" style="color: black;">{{ essay.title }}</a></h3>
+                        {% endif %}
+                        <h6>{{ essay.author }}</h6>
+                    </div>
+                    <div class="col-md-6"><span class="period">{{ essay.date }}</span></div>
+                </div>
+               
+            </div>
+            {% endfor %}
+         
+        </div>
+        
+                </div>
+        
+    </div>
+</section>
+{% endif %}
+  
+{% if meta.essays and  meta.exhibits %}
+<section class="portfolio-block cv">
+  <div class="container">
+    
+        <div class="work-experience group">
+          
+          
+          {% for essay in meta.essays %}
+          <div class="item">
+              <div class="row">
+                  <div class="col-md-6">
+                      {% if meta.dev%}
+                      <h3><a href="?edit_essay={{ essay.slug }}" style="color: black;">{{ essay.title }}</a></h3></form>
+                      {% else %}
+                      <h3><a href="/essay/{{ essay.slug }}" style="color: black;">{{ essay.title }}</a></h3>
+                      {% endif %}
+                      <h6>{{ essay.author }}</h6>
+                  </div>
+                  <div class="col-md-6"><span class="period">{{ essay.date }}<br><span class="badge badge-info">essay</span></span></div>
+              </div>
+             
+          </div>
+          {% endfor %}
+       
+      
+
+     
+        {% for exhibit in meta.exhibits %}
+            <div class="item">
+                <div class="row">
+                    <div class="col-md-6">
+                        {% if meta.dev%}
+                        <h3><a href="?edit_exhibit={{ exhibit.slug }}" style="color: black;">{{ exhibit.title }}</a></h3></form>
+                        {% else %}
+                        <h3><a href="/exhibit/{{ exhibit.slug }}" style="color: black;">{{ exhbit.title }}</a></h3>
+                        {% endif %}
+                        <h6>{{ exhibit.author }}</h6>
+                    </div>
+                    <div class="col-md-6"><span class="period">{{ exhibit.date }}<br><span class="badge badge-info">exhibit</span></span></div>
+                </div>
+               
+            </div>
+            {% endfor %}
+      </div>
+  </div>
+   
+</section>
+{% endif %}
+
+ <!-- New Essay Modal -->
+ <div class="modal" id="essay-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">New Essay</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         
+            <form>
+    
+                <div class="form-group"><label for="title">Title</label><input name="new_essay" class="form-control" type="text" id="title"></div>
+                               
+        
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- end new essay modal -->
+
+<!-- New Exhibit Modal -->
+<div class="modal" id="exhibit-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">New Exhibit</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         
+            <form>
+    
+                <div class="form-group"><label for="title"> Enter title:</label><input name="new_exhibit" class="form-control" type="text" id="title"></div>
+                               
+        
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+          <!-- end new exhibit modal -->
+
+{% endblock %}

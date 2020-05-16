@@ -1,0 +1,9 @@
+--- 
+ course_name: "World History at Global Scale"
+ course_id: "HIST101"
+ description: "A class for all who live on this blue marble."
+ 
+ url: "blini.apjan.co"
+ dev: true
+# change header/footer gradient css?
+#theme: fun
