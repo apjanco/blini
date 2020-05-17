@@ -18,7 +18,7 @@ from slugify import slugify
 
 
 app = FastAPI()
-#app.add_middleware(HTTPSRedirectMiddleware)
+app.add_middleware(HTTPSRedirectMiddleware)
 
 app_path = Path.cwd()
 static_path = app_path / "site" / "assets"
@@ -38,6 +38,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 # read the essays and exhibits directorys, add metadata
 def get_essays(meta):
     meta["essays"] = []
