@@ -29,7 +29,7 @@ docker run -d \
 ```
 docker run -d \
     --name blini \
-    -e 'LETSENCRYPT_EMAIL=you@haverford.edu' \
-    -e 'LETSENCRYPT_HOST=blini.haverford.edu' \
-    -e 'VIRTUAL_HOST=blini.haverford.edu' blini
+    -e 'LETSENCRYPT_EMAIL=ajanco@haverford.edu' \
+    -e 'LETSENCRYPT_HOST=blini.apjan.co' \
+    -e 'VIRTUAL_HOST=blini.apjan.co' blini
 ```
