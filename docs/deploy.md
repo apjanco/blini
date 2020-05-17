@@ -29,7 +29,6 @@ docker run -d \
 ```
 docker run -d \
     --name blini \
-    -v $HOME/certs:/etc/nginx/certs:rw \
     -e 'LETSENCRYPT_EMAIL=you@haverford.edu' \
     -e 'LETSENCRYPT_HOST=blini.haverford.edu' \
     -e 'VIRTUAL_HOST=blini.haverford.edu' blini
