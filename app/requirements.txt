@@ -10,6 +10,7 @@ Jinja2==2.11.2
 MarkupSafe==1.1.1
 pydantic==1.5.1
 python-slugify==4.0.0
+python-multipart
 PyYAML==5.3.1
 soupsieve==2.0
 starlette==0.13.2
