@@ -18,7 +18,7 @@ from slugify import slugify
 
 
 app = FastAPI()
-app.add_middleware(HTTPSRedirectMiddleware)
+#app.add_middleware(HTTPSRedirectMiddleware)
 
 app_path = Path.cwd()
 static_path = app_path / "site" / "assets"

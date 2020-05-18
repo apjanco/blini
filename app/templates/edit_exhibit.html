@@ -173,7 +173,7 @@
     if (typeof files !== "undefined") {
       fd.append('file',files);   
       fd.append('filename', files.name);
-      request.open("POST", "http://{{ meta.url }}/item_images");
+      request.open("POST", "https://{{ meta.url }}/item_images");
       request.send(fd);
       let ur = request.response;
       let url = ur.slice(2,-2);
