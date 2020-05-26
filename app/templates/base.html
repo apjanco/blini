@@ -4,18 +4,18 @@
 <head>
     <meta charset="utf-8">
     
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="assets/img/favicon-16x16.png" sizes="16x16">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('assets', path='/img/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('assets', path='/img/favicon-32x32.png') }}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{ url_for('assets', path='/img/favicon-16x16.png') }}" sizes="16x16">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('assets', path='/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="{{ url_for('assets', path='assets/fonts/ionicons.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('assets', path='css/style.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/ckeditor.css"> <!-- Remove this?  https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/content-styles.html -->
+    <link rel="stylesheet" href="{{ url_for('assets', path='/css/ckeditor.css') }}"> <!-- Remove this?  https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/content-styles.html -->
 
     {% block head %}{% endblock %}
 </head>
@@ -55,13 +55,13 @@
 
         </div>
     </footer>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('assets', path='/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('assets', path='/assets/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
-    <script src="assets/js/theme.js"></script>
+    <script src="{{ url_for('assets', path='/assets/js/theme.js') }}"></script>
     <script async charset="utf-8" src="https://cdn.embedly.com/widgets/platform.js"></script>
-    <script src="assets/js/shuffle.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
+    <script src="{{ url_for('assets', path='/js/shuffle.min.js') }}"></script>
+    <script src="{{ url_for('assets', path='/js/popper.min.js') }}"></script>
 
     <script>
         $(function () {
