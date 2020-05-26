@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Edit HTML</title>
+  <link rel="stylesheet" href="https://codemirror.net/theme/cobalt.css">
+  <link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <script src="https://codemirror.net/lib/codemirror.js"></script>
+  <!-- <script src="{{ url_for('assets', path='js/python.min.js') }}"></script> -->
+
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+
+    <form><textarea id="code" name="code">
+
+        <!-- TODO add undo button -->
+        <!-- TODO create staging file, then create official page -->
+{{ code }}
+</textarea></form>
+  </div>
+  {% endblock %}
+
+  {% block js %}
+  <script>
+
+    let editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+      lineNumbers: true,
+      styleActiveLine: true,
+      matchBrackets: true,
+      theme: 'cobalt',
+      mode: 'python',
+    });
+    editor.on("change", function (cm, change) {
+      let code = cm.getValue();
+      let filename = window.location.pathname.slice(12);
+
+      // src https://www.html5rocks.com/en/tutorials/cors/
+      let url = '{{ meta.url }}/change_essay_html';
+
+      var xhr = createCORSRequest('POST', url);
+      if (!xhr) {
+        throw new Error('CORS not supported');
+      }
+      else {
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+          "filename": filename,
+          "code": code
+        }));
+      };
+    });
+
+    function createCORSRequest(method, url) {
+      var xhr = new XMLHttpRequest();
+      if ("withCredentials" in xhr) {
+
+        // Check if the XMLHttpRequest object has a "withCredentials" property.
+        // "withCredentials" only exists on XMLHTTPRequest2 objects.
+        xhr.open(method, url, true);
+
+      } else if (typeof XDomainRequest != "undefined") {
+
+        // Otherwise, check if XDomainRequest.
+        // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+        xhr = new XDomainRequest();
+        xhr.open(method, url);
+
+      } else {
+
+        // Otherwise, CORS is not supported by the browser.
+        xhr = null;
+
+      }
+      return xhr;
+    }
+
+  </script>
+
+{% endblock %}
+

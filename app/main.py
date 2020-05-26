@@ -590,3 +590,21 @@ def read_item(request: Request):
     context["meta"] = meta
     context["request"] = request
     return templates.TemplateResponse("exhibits.html", context)
+
+
+@app.get("/essay_html/{filename}")
+def read_item(request: Request, filename:str):
+    filename = filename + ".html"
+    code = (app_path / "site" / "essay" / filename).read_text()
+    context = {}
+    context["code"] = code
+    context["meta"] = meta
+    context["request"] = request
+    return templates.TemplateResponse("essay_html.html", context)
+
+@app.post("/change_essay_html")
+async def change_essay_code(request: Request):
+    data = await request.json()
+    code = data["code"]
+    filename = data["filename"]
+    (app_path / "site" / "essay" / filename).write_text(code)
