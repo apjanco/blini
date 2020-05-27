@@ -606,5 +606,9 @@ def read_item(request: Request, filename:str):
 async def change_essay_code(request: Request):
     data = await request.json()
     code = data["code"]
-    filename = data["filename"]
-    (app_path / "site" / "essay" / filename).write_text(code)
+    filename = data["filename"] + '.html'
+    path = (app_path / "site" / "essay" / filename)
+    if path.exists():
+        path.write_text(code)
+    else:
+        return {'error':'file does not exist'}
