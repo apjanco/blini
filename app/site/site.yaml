@@ -1,9 +1,10 @@
 --- 
- course_name: "World History at Global Scale"
+ course_name: "Global History of Geese"
  course_id: "HIST101"
  description: "A class for all who live on this blue marble."
  
  url: "blini.apjan.co"
+ http: "https"
  dev: true
 # change header/footer gradient css?
 #theme: fun

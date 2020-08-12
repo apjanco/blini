@@ -15,9 +15,10 @@ from datetime import date
 from pathlib import Path
 from bs4 import BeautifulSoup
 from slugify import slugify
-
+from routers.fastAPI_socialauth import fastAPI_socialauth
 
 app = FastAPI()
+app.include_router(fastAPI_socialauth.router)
 #app.add_middleware(HTTPSRedirectMiddleware)
 
 app_path = Path.cwd()
@@ -530,7 +531,7 @@ async def create_upload_file(upload: bytes = File("upload")):
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     while True:
-
+        print('is websocket')
         data = await websocket.receive_text()
         keys = ["type","slug", "title", "author", "text","grid"]
         data = dict(zip(keys, data.split("💾🥞")[1:]))

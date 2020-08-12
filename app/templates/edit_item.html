@@ -46,6 +46,7 @@
 <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
 
 <script>
+    function isOpen(ws) { return ws.readyState === ws.OPEN }
     let ws = new WebSocket("ws://{{ meta.url }}/essay-ws");
     let editor;
 
@@ -103,7 +104,7 @@
                 licenseKey: '',
                 simpleUpload: {
                    // The URL the images are uploaded to.
-                    uploadUrl: 'http://localhost:8000/images',
+                    uploadUrl: '{{ meta.http }}://{{ meta.url }}/images',
 
                     // Headers sent along with the XMLHttpRequest to the upload server.
                 },
@@ -121,8 +122,9 @@
         const author = $("#author").text();
         // data = '{"slug": "{{ the.slug }}","title": "' + title + '" , "author": "'+ author + '", "text": "' + text + '" }';
         data = '💾🥞' + '{{ the.slug }}' + '💾🥞' + title + '💾🥞' + author + '💾🥞' +text
+        if (!isOpen(socket)) return;
         ws.send(data);
-    });
+        });
         } )
         .catch( error => {
             console.error( error );
