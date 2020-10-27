@@ -22,11 +22,12 @@ app = FastAPI()
 #app.add_middleware(HTTPSRedirectMiddleware)
 
 app_path = Path.cwd()
-static_path = app_path / "site" / "assets"
+static_path = app_path / "app"/ "site" / "assets"
+print(static_path)
 app.mount("/assets", StaticFiles(directory=static_path), name="assets")
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="app/templates")
 
-site_metadata = app_path / "site" / "site.yaml"
+site_metadata = app_path / "app"/ "site" / "site.yaml"
 meta = yaml.load(site_metadata.read_text(), Loader=yaml.FullLoader)
 meta["exhibits"] = []
 
@@ -43,9 +44,9 @@ app.add_middleware(
 # read the essays and exhibits directorys, add metadata
 def get_essays(meta):
     meta["essays"] = []
-    if not (app_path / "site" / "essay").exists():
-        (app_path / "site" / "essay").mkdir()
-    essays = list((app_path / "site" / "essay").iterdir())
+    if not (app_path / "app" / "site" / "essay").exists():
+        (app_path / "app" / "site" / "essay").mkdir()
+    essays = list((app_path / "app" / "site" / "essay").iterdir())
     if essays:
         for essay in essays:
             html = essay.read_bytes()
@@ -62,9 +63,9 @@ def get_essays(meta):
 
 def get_exhibits(meta):
     meta["exhibits"] = []
-    if not (app_path / "site" / "exhibit").exists():
-        (app_path / "site" / "exhibit").mkdir()
-    exhibits = list((app_path / "site" / "exhibit").iterdir())
+    if not (app_path / "app" / "site" / "exhibit").exists():
+        (app_path / "app" / "site" / "exhibit").mkdir()
+    exhibits = list((app_path / "app" / "site" / "exhibit").iterdir())
     if exhibits:
         for exhibit in exhibits:
             html = exhibit.read_bytes()
@@ -95,14 +96,14 @@ if meta["dev"] == False:
     path.write_bytes(page)
 
     # write about page
-    path = app_path / "site" / "about.html"
+    path = app_path / "app" / "site" / "about.html"
     page = templates.TemplateResponse(
         "about.html", {"request": Request, "meta": meta}
     ).body
     path.write_bytes(page)
 
     # write essays page
-    path = app_path / "site" / "essays.html"
+    path = app_path / "app" / "site" / "essays.html"
     page = templates.TemplateResponse(
         "essays.html", {"request": Request, "meta": meta}
     ).body
@@ -113,11 +114,11 @@ if meta["dev"] == False:
     # fetch all images and save to site/img
     # update img src paths in essays + '../'
 
-if (app_path / "site" / "exhibit").exists():
-    exhibits = list((app_path / "site" / "exhibit").iterdir())
+if (app_path / "app" / "site" / "exhibit").exists():
+    exhibits = list((app_path / "app" / "site" / "exhibit").iterdir())
     meta["exhibits"] = len(exhibits)
 else:
-    (app_path / "site" / "exhibit").mkdir()
+    (app_path / "app" / "site" / "exhibit").mkdir()
     meta["exhibits"] = []
 
 
@@ -139,7 +140,7 @@ async def index(request: Request):
 
             if len(unique) == 0:
 
-                path = app_path / "site" / "essay" / (slug + ".html")
+                path = app_path / "app" / "site" / "essay" / (slug + ".html")
                 if not path.exists():
                     # Create a new html file from essay template, set title from form
                     path.touch()
@@ -230,7 +231,7 @@ async def index(request: Request):
         elif "edit_essay" in request.query_params:
             edit_essay = request.query_params["edit_essay"]
             slug = slugify(edit_essay)
-            path = app_path / "site" / "essay" / (slug + ".html")
+            path = app_path / "app" / "site" / "essay" / (slug + ".html")
             if not path.exists():
                 pass  # TODO add 404 error
 
@@ -267,7 +268,7 @@ async def index(request: Request):
 
             if len(unique) == 0:
 
-                path = app_path / "site" / "exhibit" / (slug + ".html")
+                path = app_path / "app" / "site" / "exhibit" / (slug + ".html")
                 if not path.exists():
                     # Create a new html file from essay template, set title from form
                     path.touch()
@@ -389,7 +390,7 @@ async def index(request: Request):
         elif "edit_exhibit" in request.query_params:
             edit_exhibit = request.query_params["edit_exhibit"]
             slug = slugify(edit_exhibit)
-            path = app_path / "site" / "exhibit" / (slug + ".html")
+            path = app_path / "app" / "site" / "exhibit" / (slug + ".html")
             if not path.exists():
                 pass  # TODO add 404 error
 
@@ -466,7 +467,7 @@ async def edit_essay(request: Request, slug: str):
     context["meta"] = meta
     context["request"] = request
 
-    path = app_path / "site" / "essay" / (slug + ".html")
+    path = app_path / "app" / "site" / "essay" / (slug + ".html")
     try:
         path.unlink()
         essay = [e['title'] for e in meta["essays"] if e["slug"] == slug]
@@ -482,7 +483,7 @@ async def edit_essay(request: Request, slug: str):
     context["meta"] = meta
     context["request"] = request
 
-    path = app_path / "site" / "exhibit" / (slug + ".html")
+    path = app_path / "app" / "site" / "exhibit" / (slug + ".html")
     try:
         path.unlink()
         essay = [e['title'] for e in meta["exhibits"] if e["slug"] == slug]
@@ -506,7 +507,7 @@ async def add_item(exhibit:str, title: str = Form('title')):
 
 @app.post("/item_images")
 async def create_upload_file(filename: str = Form("filename"), file: UploadFile = Form("file")):
-    path = app_path / "site" / "assets" / "upload" / f"{filename}"
+    path = app_path / "app" / "site" / "assets" / "upload" / f"{filename}"
     path.write_bytes(file.file.read())
     # url = f"https://{meta.url}/images/model.png"
     return {
@@ -516,7 +517,7 @@ async def create_upload_file(filename: str = Form("filename"), file: UploadFile 
 @app.post("/images")
 async def create_upload_file(upload: bytes = File("upload")):
     name = generate_slug()
-    path = app_path / "site" / "assets" / "upload" / f"{name}.jpeg"
+    path = app_path / "app" / "site" / "assets" / "upload" / f"{name}.jpeg"
     path.write_bytes(upload)
     # url = f"https://{meta.url}/images/model.png"
     return {
@@ -538,9 +539,9 @@ async def websocket_endpoint(websocket: WebSocket):
         print(data)
         slug = data["slug"]
         if data['type'] == 'essay':
-            path = app_path / "site" / "essay" / (slug + ".html")
+            path = app_path / "app" / "site" / "essay" / (slug + ".html")
         else:
-            path = app_path / "site" / "exhibit" / (slug + ".html")
+            path = app_path / "app" / "site" / "exhibit" / (slug + ".html")
         page = path.read_bytes()
         soup = BeautifulSoup(page, features="html.parser")
 
@@ -596,7 +597,7 @@ def read_item(request: Request):
 @app.get("/essay_html/{filename}")
 def read_item(request: Request, filename:str):
     filename = filename + ".html"
-    code = (app_path / "site" / "essay" / filename).read_text()
+    code = (app_path / "app" / "site" / "essay" / filename).read_text()
     context = {}
     context["code"] = code
     context["meta"] = meta
@@ -608,7 +609,7 @@ async def change_essay_code(request: Request):
     data = await request.json()
     code = data["code"]
     filename = data["filename"] + '.html'
-    path = (app_path / "site" / "essay" / filename)
+    path = (app_path / "app" / "site" / "essay" / filename)
     if path.exists():
         path.write_text(code)
     else:

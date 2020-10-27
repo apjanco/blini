@@ -34,13 +34,13 @@
       </div> 
     </div>
   <div class="container">
-
+     <div style="height: 500px">
     <form><textarea id="code" name="code">
 
         <!-- TODO add undo button -->
         <!-- TODO create staging file, then create official page -->
 {{ code }}
-</textarea></form>
+</textarea></form></div>
   </div>
  
   <script>
@@ -51,6 +51,7 @@
       matchBrackets: true,
       theme: 'cobalt',
       mode: 'python',
+      viewportMargin: Infinity,
     });
     editor.on("change", function (cm, change) {
       let code = cm.getValue();
