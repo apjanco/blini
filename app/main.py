@@ -15,10 +15,10 @@ from datetime import date
 from pathlib import Path
 from bs4 import BeautifulSoup
 from slugify import slugify
-from routers.fastAPI_socialauth import fastAPI_socialauth
+#from routers.fastAPI_socialauth import fastAPI_socialauth
 
 app = FastAPI()
-app.include_router(fastAPI_socialauth.router)
+#app.include_router(fastAPI_socialauth.router)
 #app.add_middleware(HTTPSRedirectMiddleware)
 
 app_path = Path.cwd()
