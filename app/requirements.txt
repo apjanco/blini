@@ -3,7 +3,7 @@ beautifulsoup4==4.9.0
 certifi==2020.4.5.1
 click==7.1.1
 coolname==1.1.0
-fastapi==0.54.1
+fastapi==0.65.2
 google==2.0.2
 google-api-python-client==1.7.8
 google-auth==1.6.3
